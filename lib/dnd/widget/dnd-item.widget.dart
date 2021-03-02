@@ -1,6 +1,7 @@
-import 'package:dnd_listview/dnd/dnd-listview.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-listview.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+
 
 enum DndItemStateType {
   NORMAL,
@@ -87,9 +88,7 @@ class DndItemState extends State<DndItem> {
 
     update();
 
-    Future.delayed(duration).then((_){
-      _listState.remove(this);
-    });
+    Future.delayed(duration).then((_) => _listState.remove(this));
   }
 
   update() {
@@ -105,6 +104,7 @@ class DndItemState extends State<DndItem> {
   }
 
   Key get key => widget.key;
+
   AbstractDndItemModel get itemModel => _itemModel;
 }
 
@@ -117,7 +117,6 @@ abstract class AbstractDndItemModel<T> {
 
   @override
   String toString() {
-    // TODO: implement toString
     return '$key, ${data.toString()}';
   }
 }

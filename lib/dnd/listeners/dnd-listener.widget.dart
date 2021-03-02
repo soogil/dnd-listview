@@ -1,5 +1,5 @@
-import 'package:dnd_listview/dnd/dnd-item.widget.dart';
-import 'package:dnd_listview/dnd/dnd-listview.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-item.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-listview.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/gestures.dart';
@@ -20,7 +20,6 @@ class DndListener extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-
     return Listener(
       onPointerDown: (PointerEvent event) => _routePointer(event, context),
       child: child,
@@ -28,14 +27,9 @@ class DndListener extends StatelessWidget {
   }
 
   _routePointer(PointerEvent event, BuildContext context) {
-    print('$canStart routePointer');
     if (canStart == null || canStart()) {
       _startDragging(context: context, event: event);
     }
-  }
-
-  _createRecognizer() {
-    return _Recognizer();
   }
 
   _startDragging({BuildContext context, PointerEvent event}) {
@@ -54,29 +48,30 @@ class DndListener extends StatelessWidget {
           recognizer: _createRecognizer());
     }
   }
+
+  _createRecognizer() => _Recognizer();
 }
 
 class _Recognizer extends MultiDragGestureRecognizer<_VerticalPointerState> {
-  _Recognizer() : super();
-
+  _Recognizer() : super(debugOwner: null);
 
   @override
-  createNewPointerState(PointerDownEvent event) {
-    return _VerticalPointerState(event.position);
-  }
+  createNewPointerState(PointerDownEvent event) => _VerticalPointerState(event.position);
 
   @override
   String get debugDescription => 'vertical';
 }
 
 class _VerticalPointerState extends MultiDragPointerState {
-  _VerticalPointerState(Offset initialPosition) : super(initialPosition, PointerDeviceKind.touch) {
 
+  _VerticalPointerState(Offset initialPosition) : super(initialPosition, PointerDeviceKind.touch) {
     _resolveTimer = Timer(Duration(milliseconds: 150), () {
       resolve(GestureDisposition.accepted);
       _resolveTimer = null;
     });
   }
+
+  Timer _resolveTimer;
 
   @override
   checkForResolutionAfterMove() {
@@ -97,11 +92,7 @@ class _VerticalPointerState extends MultiDragPointerState {
     _resolveTimer = null;
     super.dispose();
   }
-
-  Timer _resolveTimer;
 }
-
-
 
 class DelayedDndListener extends DndListener {
   DelayedDndListener({
@@ -114,7 +105,5 @@ class DelayedDndListener extends DndListener {
   final Duration delay;
 
   @override
-  _createRecognizer() {
-    return DelayedMultiDragGestureRecognizer(delay: delay);
-  }
+  _createRecognizer() => DelayedMultiDragGestureRecognizer(delay: delay);
 }

@@ -1,4 +1,4 @@
-import 'package:dnd_listview/dnd/dnd-item.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-item.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/gestures.dart';

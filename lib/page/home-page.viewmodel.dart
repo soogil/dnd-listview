@@ -1,10 +1,9 @@
-import 'package:dnd_listview/dnd/dnd-item.widget.dart';
-import 'package:dnd_listview/dnd/dnd-listview.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-item.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-listview.widget.dart';
 import 'package:flutter/material.dart';
 
 
 class HomePageViewModel {
-
   HomePageViewModel() {
     _scrollController = ScrollController();
     _dndController = DndController();

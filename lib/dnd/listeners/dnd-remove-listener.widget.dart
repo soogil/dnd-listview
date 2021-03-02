@@ -1,6 +1,6 @@
-import 'package:dnd_listview/dnd/dnd-item.widget.dart';
-import 'package:dnd_listview/dnd/dnd-listview.widget.dart';
+import 'package:dnd_listview/dnd/widget/dnd-item.widget.dart';
 import 'package:flutter/material.dart';
+
 
 class DndRemoveListener extends StatelessWidget {
   DndRemoveListener({
@@ -14,7 +14,6 @@ class DndRemoveListener extends StatelessWidget {
 
   @override
   build(BuildContext context) {
-
     return FlatButton(
       child: child,
       onPressed: ()=> _onPressed(context)
